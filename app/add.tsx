@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Image, View, StyleSheet, TextInput, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Person, persons } from "@/constants/Person";
+import { Person, persons, savePersonsToStorage } from "@/constants/Person";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -34,6 +34,7 @@ export default function Add() {
     if (image && phone) {
       const person: Person = new Person(persons.length + 1, image, phone);
       persons.push(person);
+      savePersonsToStorage();
       setImage(null);
       setPhone('');
     }
@@ -53,11 +54,11 @@ export default function Add() {
       <View style={styles.container}>
         <View style={styles.flexContainer}>
           <TouchableOpacity onPress={pickImage} style={styles.btn}>
-            <Text style={styles.btnText}>SELECT AN IMAGE</Text>
+            <Text style={styles.btnText}>SELECCIONA UNA IMAGEN</Text>
           </TouchableOpacity>
           {image && (
             <TouchableOpacity onPress={removeImage} style={styles.btn}>
-              <Text style={styles.btnText}>REMOVE IMAGE</Text>
+              <Text style={styles.btnText}>ELIMINAR IMAGEN</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -66,11 +67,12 @@ export default function Add() {
           style={styles.textInput} 
           placeholder='Type phone number' 
           value={phone}
+          keyboardType='numeric'
           onChangeText={setPhone} 
         />
         {phone && <Text>{phone}</Text>}
         <TouchableOpacity onPress={savePerson} style={styles.btn}>
-          <Text style={styles.btnText}>SAVE</Text>  
+          <Text style={styles.btnText}>GUARDAR</Text>  
         </TouchableOpacity>
       </View>
     </SafeAreaView>

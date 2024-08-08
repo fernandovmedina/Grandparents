@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, FlatList, Linking, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Person, persons } from '@/constants/Person';
+import { Person, persons, savePersonsToStorage, loadPersonsFromStorage } from '@/constants/Person';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
@@ -13,6 +13,10 @@ export default function HomeScreen() {
   const [editingMode, setEditingMode] = useState(false);
   const [deletingMode, setDeletingMode] = useState(false);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    loadPersonsFromStorage();
+  }, []);
 
   const makeCall = (phone: string) => {
     Linking.openURL(`tel:${phone}`);
@@ -32,6 +36,7 @@ export default function HomeScreen() {
     const updatedPersons = persons.filter(person => person.id !== item.id);
     persons.length = 0;
     persons.push(...updatedPersons);
+    savePersonsToStorage();
   };
 
   const editPerson = (item: Person) => {
@@ -42,12 +47,12 @@ export default function HomeScreen() {
     <View style={styles.personContainer}>
       {editingMode && (
         <TouchableOpacity style={styles.editButton} onPress={() => editPerson(item)}>
-          <Text style={styles.editButtonText}>Edit</Text>
+          <Text style={styles.editButtonText}>EDITAR</Text>
         </TouchableOpacity>
       )}
       {deletingMode && (
         <TouchableOpacity style={styles.deleteButton} onPress={() => deletePerson(item)}>
-          <Text style={styles.deleteButtonText}>Delete</Text>
+          <Text style={styles.deleteButtonText}>ELIMINAR</Text>
         </TouchableOpacity>
       )}
       <TouchableOpacity style={styles.imageContainer} onPress={() => makeCall(item.phone)}>

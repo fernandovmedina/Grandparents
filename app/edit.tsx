@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, StyleSheet, TextInput, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { Person, persons } from '@/constants/Person';
+import { Person, persons, savePersonsToStorage } from '@/constants/Person';
 
 export default function Edit() {
   const route = useRoute();
@@ -16,6 +16,7 @@ export default function Edit() {
     if (index !== -1) {
       persons[index].src = image;
       persons[index].phone = phone;
+      savePersonsToStorage();
     }
     navigation.goBack();
   };
@@ -34,10 +35,11 @@ export default function Edit() {
           style={styles.textInput}
           placeholder='Type phone number'
           value={phone}
+          keyboardType='numeric'
           onChangeText={setPhone}
         />
         <TouchableOpacity onPress={updatePerson} style={styles.btn}>
-          <Text style={styles.btnText}>UPDATE</Text>
+          <Text style={styles.btnText}>ACTUALIZAR</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
