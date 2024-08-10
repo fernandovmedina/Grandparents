@@ -39,7 +39,7 @@ export default function Edit() {
           onChangeText={setPhone}
         />
         <TouchableOpacity onPress={updatePerson} style={styles.btn}>
-          <Text style={styles.btnText}>ACTUALIZAR</Text>
+          <Text style={styles.btnText}>UPDATE</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

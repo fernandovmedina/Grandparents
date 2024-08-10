@@ -3,9 +3,6 @@ import { Image, View, StyleSheet, TextInput, Text, TouchableOpacity } from 'reac
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Person, persons, savePersonsToStorage } from "@/constants/Person";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from '@expo/vector-icons/Entypo';
 import { Link } from "expo-router";
 
@@ -54,11 +51,11 @@ export default function Add() {
       <View style={styles.container}>
         <View style={styles.flexContainer}>
           <TouchableOpacity onPress={pickImage} style={styles.btn}>
-            <Text style={styles.btnText}>SELECCIONA UNA IMAGEN</Text>
+            <Text style={styles.btnText}>SELECT AN IMAGE</Text>
           </TouchableOpacity>
           {image && (
             <TouchableOpacity onPress={removeImage} style={styles.btn}>
-              <Text style={styles.btnText}>ELIMINAR IMAGEN</Text>
+              <Text style={styles.btnText}>DELETE IMAGE</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -72,7 +69,7 @@ export default function Add() {
         />
         {phone && <Text>{phone}</Text>}
         <TouchableOpacity onPress={savePerson} style={styles.btn}>
-          <Text style={styles.btnText}>GUARDAR</Text>  
+          <Text style={styles.btnText}>SAVE</Text>  
         </TouchableOpacity>
       </View>
     </SafeAreaView>

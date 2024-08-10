@@ -47,12 +47,12 @@ export default function HomeScreen() {
     <View style={styles.personContainer}>
       {editingMode && (
         <TouchableOpacity style={styles.editButton} onPress={() => editPerson(item)}>
-          <Text style={styles.editButtonText}>EDITAR</Text>
+          <Text style={styles.editButtonText}>EDIT</Text>
         </TouchableOpacity>
       )}
       {deletingMode && (
         <TouchableOpacity style={styles.deleteButton} onPress={() => deletePerson(item)}>
-          <Text style={styles.deleteButtonText}>ELIMINAR</Text>
+          <Text style={styles.deleteButtonText}>DELETE</Text>
         </TouchableOpacity>
       )}
       <TouchableOpacity style={styles.imageContainer} onPress={() => makeCall(item.phone)}>
