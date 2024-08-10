@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   personContainer: {
-    margin: 10,
     alignItems: 'center',
     position: 'relative',
   },
